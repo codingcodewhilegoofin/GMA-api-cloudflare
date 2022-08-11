@@ -1,4 +1,14 @@
-import { Router } from 'itty-router'
+import { Router } from 'itty-router';
+
+import {
+  json,
+  missing,
+  error,
+  status,
+  withContent,
+  withParams,
+  ThrowableRouter,
+} from 'itty-router-extras';
 
 const testUrl = 'https://swapi.dev/api/people/1/';
 const polygonUrlBase = 'https://api.polygon.io/v1/open-close/';
@@ -6,20 +16,27 @@ let symbol = 'AAPL';
 let date = '2022-08-03';
 let adjusted = 'true';
 
+import Tests from './src/handlers/tests.js';
+import Test from './src/handlers/test.js';
+
 const router = Router();
 
-router.get("/", () => {
-  return new Response("Hello, world! This is the root page of your Worker template.")
-})
+const errorHandler = error =>
+  new Response(error.message || 'Server Error', error , { status: error.status || 500 })
 
-router.all("*", () => new Response("YOUR MOM!", { status: 404 }))
 
+router.get('/', () => new Response('Hello', { status: 200 })) 
+
+router.get('/api/tests', Tests)
+
+router.get('/api/test/:id', Test );
+
+router.get('*', () => new Response('Not found bitchh', { status: 404 }));
 
 //Test listener
-addEventListener('fetch', (e) => {
-  e.respondWith(router.handle(e.request))
-})
-
+addEventListener('fetch', event =>
+  event.respondWith(router.handle(event.request).catch(errorHandler))
+)
 
 //Test function 
 /* async function handleRequest(request) {
