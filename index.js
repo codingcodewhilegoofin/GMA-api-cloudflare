@@ -18,11 +18,9 @@ let adjusted = 'true';
 
 import Tests from './src/handlers/tests.js';
 import Test from './src/handlers/test.js';
+import ApiTest from './src/handlers/OpenAi/apitest.js';
 
 const router = Router();
-
-const errorHandler = error =>
-  new Response(error.message || 'Server Error', error , { status: error.status || 500 })
 
 
 router.get('/', () => new Response('Hello', { status: 200 })) 
@@ -31,11 +29,14 @@ router.get('/api/tests', Tests)
 
 router.get('/api/test/:id', Test );
 
+// Connect to OpenAI API will need a standard HTTP request 
+router.get('/api/OpenAi/:userPrompt', ApiTest );
+
 router.get('*', () => new Response('Not found bitchh', { status: 404 }));
 
 //Test listener
 addEventListener('fetch', event =>
-  event.respondWith(router.handle(event.request).catch(errorHandler))
+  event.respondWith(router.handle(event.request))
 )
 
 //Test function 
