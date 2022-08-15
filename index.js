@@ -19,6 +19,8 @@ let adjusted = 'true';
 import Tests from './src/handlers/tests.js';
 import Test from './src/handlers/test.js';
 import ApiTest from './src/handlers/OpenAi/apitest.js';
+import Artist from './src/handlers/Spotify/artist.js';
+import Artists from './src/handlers/Spotify/artists.js'
 
 const router = Router();
 
@@ -26,11 +28,15 @@ const router = Router();
 router.get('/', () => new Response('Hello', { status: 200 })) 
 
 router.get('/api/tests', Tests)
-
 router.get('/api/test/:id', Test );
 
 // Connect to OpenAI API will need a standard HTTP request 
 router.get('/api/OpenAi/:userPrompt', ApiTest );
+
+// Connect to Spotify API 
+router.get('/api/Spotify', Artists );
+router.get('/api/Spotify/:artistID', Artist );
+
 
 router.get('*', () => new Response('Not found bitchh', { status: 404 }));
 
