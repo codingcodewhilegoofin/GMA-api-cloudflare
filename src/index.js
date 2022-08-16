@@ -21,9 +21,9 @@ import Test from './handlers/test.js';
 import ApiTest from './handlers/OpenAi/apitest.js';
 import Artist from './handlers/Spotify/artist.js';
 import Artists from './handlers/Spotify/artists.js';
-import Stockticker from './handlers/Financial/stock.js';
-import Cryptoticker from './handlers/Financial/crypto.js';
-import Nftticker from './handlers/Financial/nft.js';
+import StockTicker from './handlers/Financial/stock.js';
+import CryptoTicker from './handlers/Financial/cryptoTicker.js';
+import NftTicker from './handlers/Financial/nft.js';
 import GovData from './handlers/Financial/gov.js';
 
 const router = Router();
@@ -41,9 +41,9 @@ router.get('/api/Spotify', Artists );
 router.get('/api/Spotify/:artistID', Artist );
 
 // Connect to Financial APIs 
-router.get('/api/Stock/:symbol/:date/:adjusted', Stockticker );
-router.get('/api/Crypto/:cryptoticker/:adjusted', Cryptoticker );
-router.get('/api/Nft/:collectionName', Nftticker );
+router.get('/api/Stock/:symbol/:date/:adjusted', StockTicker );
+router.get('/api/Crypto/:cryptoticker/:adjusted', CryptoTicker );
+router.get('/api/Nft/:collectionName', NftTicker );
 router.get('/api/Gov', GovData );
 
 

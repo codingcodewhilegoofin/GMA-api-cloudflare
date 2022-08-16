@@ -1,31 +1,8 @@
-//PolygonAPI URL
-const polygonUrlBase = 'https://api.polygon.io/v1/open-close/';
-let symbol = 'AAPL';
-let date = '2022-08-03';
-let adjusted = 'true';
 
 const GovData = async (request, event) => {
 
-    if (request.params.symbol) {
-        symbol = request.params.symbol;
-    } else {
-        symbol = 'AAPL';
-    }
-
-    if (request.params.date) {
-        date = request.params.date;
-    } else {
-        date = '2022-08-03';
-    }
-
-    if (request.params.adjusted) {
-        adjusted = request.params.adjusted;
-    } else {
-        adjusted = 'true';
-    }
-
     try {
-        const response = await fetch((polygonUrlBase + `${symbol}/` + `${date}/` + `?adjusted=${adjusted}` + `&apiKey=${POLYGON_API_KEY}`));
+        const response = await fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_outstanding?sort=-record_date');
 
         if (!response.ok) {
             const message = `Bad response: ${response.status}`;

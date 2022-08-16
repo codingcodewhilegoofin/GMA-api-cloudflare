@@ -1,21 +1,14 @@
 //PolygonAPI URL
-const polygonUrlBase = 'https://api.polygon.io/v1/open-close/';
-let symbol = 'AAPL';
-let date = '2022-08-03';
+const polygonUrlBaseCrypto = 'https://api.polygon.io/v2/aggs/ticker/';
+let cryptoTicker = 'X:BTCUSD';
 let adjusted = 'true';
 
-const Cryptoticker = async (request, event) => {
+const CryptoTicker = async (request, event) => {
 
-    if (request.params.symbol) {
-        symbol = request.params.symbol;
+    if (request.params.cryptoTicker) {
+        cryptoTicker = request.params.cryptoTicker;
     } else {
-        symbol = 'AAPL';
-    }
-
-    if (request.params.date) {
-        date = request.params.date;
-    } else {
-        date = '2022-08-03';
+        cryptoTicker = 'X:BTCUSD';
     }
 
     if (request.params.adjusted) {
@@ -24,8 +17,9 @@ const Cryptoticker = async (request, event) => {
         adjusted = 'true';
     }
 
+
     try {
-        const response = await fetch((polygonUrlBase + `${symbol}/` + `${date}/` + `?adjusted=${adjusted}` + `&apiKey=${POLYGON_API_KEY}`));
+        const response = await fetch( ( polygonUrlBaseCrypto + `${cryptoTicker}/` + `prev?adjusted=${adjusted}`+ `&apiKey=${POLYGON_API_KEY}` ) );
 
         if (!response.ok) {
             const message = `Bad response: ${response.status}`;
@@ -44,8 +38,8 @@ const Cryptoticker = async (request, event) => {
         }
     }
     catch (error) {
-        console.error("Failed GET for Polygon data: " + error);
+        console.error("Failed GET for Crypto data: " + error);
         //res.status(401).send("Could not find ticker symbol or other issue");
     }
 };
-export default Cryptoticker;
+export default CryptoTicker;

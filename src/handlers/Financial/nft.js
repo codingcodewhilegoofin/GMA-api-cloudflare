@@ -1,31 +1,22 @@
 //PolygonAPI URL
-const polygonUrlBase = 'https://api.polygon.io/v1/open-close/';
-let symbol = 'AAPL';
+const openseaUrlBase = 'https://api.opensea.io/api/v1/collection/';
+let collectionName = 'cryptopunks';
 let date = '2022-08-03';
 let adjusted = 'true';
 
-const Nftticker = async (request, event) => {
+const NftTicker = async (request, event) => {
 
-    if (request.params.symbol) {
-        symbol = request.params.symbol;
+    if (request.params.collectionName) {
+        collectionName = request.params.collectionName;
     } else {
-        symbol = 'AAPL';
+        collectionName = 'cryptopunks';
     }
-
-    if (request.params.date) {
-        date = request.params.date;
-    } else {
-        date = '2022-08-03';
-    }
-
-    if (request.params.adjusted) {
-        adjusted = request.params.adjusted;
-    } else {
-        adjusted = 'true';
-    }
+   
 
     try {
-        const response = await fetch((polygonUrlBase + `${symbol}/` + `${date}/` + `?adjusted=${adjusted}` + `&apiKey=${POLYGON_API_KEY}`));
+        const nftOptions = {method: 'GET'};
+
+        const response = await fetch( ( openseaUrlBase + `/${collectionName}`  ), nftOptions );
 
         if (!response.ok) {
             const message = `Bad response: ${response.status}`;
@@ -44,8 +35,8 @@ const Nftticker = async (request, event) => {
         }
     }
     catch (error) {
-        console.error("Failed GET for Polygon data: " + error);
+        console.error("Failed GET for Nft data: " + error);
         //res.status(401).send("Could not find ticker symbol or other issue");
     }
 };
-export default Nftticker;
+export default NftTicker;
