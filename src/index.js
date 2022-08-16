@@ -16,16 +16,19 @@ let symbol = 'AAPL';
 let date = '2022-08-03';
 let adjusted = 'true';
 
-import Tests from './src/handlers/tests.js';
-import Test from './src/handlers/test.js';
-import ApiTest from './src/handlers/OpenAi/apitest.js';
-import Artist from './src/handlers/Spotify/artist.js';
-import Artists from './src/handlers/Spotify/artists.js'
+import Tests from './handlers/tests.js';
+import Test from './handlers/test.js';
+import ApiTest from './handlers/OpenAi/apitest.js';
+import Artist from './handlers/Spotify/artist.js';
+import Artists from './handlers/Spotify/artists.js';
+import Stockticker from './handlers/Financial/stock.js';
+import Cryptoticker from './handlers/Financial/crypto.js';
+import Nftticker from './handlers/Financial/nft.js';
+import GovData from './handlers/Financial/gov.js';
 
 const router = Router();
 
-
-router.get('/', () => new Response('Hello', { status: 200 })) 
+router.get('/', () => new Response("Hello",{status: 200})); 
 
 router.get('/api/tests', Tests)
 router.get('/api/test/:id', Test );
@@ -36,6 +39,12 @@ router.get('/api/OpenAi/:userPrompt', ApiTest );
 // Connect to Spotify API 
 router.get('/api/Spotify', Artists );
 router.get('/api/Spotify/:artistID', Artist );
+
+// Connect to Financial APIs 
+router.get('/api/Stock/:symbol/:date/:adjusted', Stockticker );
+router.get('/api/Crypto/:cryptoticker/:adjusted', Cryptoticker );
+router.get('/api/Nft/:collectionName', Nftticker );
+router.get('/api/Gov', GovData );
 
 
 router.get('*', () => new Response('Not found bitchh', { status: 404 }));

@@ -6,13 +6,13 @@ let artistID = '7bSpQNOg9UsW530DuXM3X5';
 
 const Artist = async (request, event) => {
 
-    const artistID = request.params.artistID;
-
-    /*  if (req.query.id) {
-         artistID = req.query.id;
-     } else {
-         artistID = '7bSpQNOg9UsW530DuXM3X5';
-     } */
+    //const artistID = request.params.artistID;
+   
+    if (request.params.artistID) {
+        artistID = request.params.artistID;
+    } else {
+        artistID = '7bSpQNOg9UsW530DuXM3X5';
+    }
 
     try {
 
