@@ -3,10 +3,9 @@ const baseUrl = 'https://accounts.spotify.com/api/token';
 const artistUrlBase = 'https://api.spotify.com/v1/artists/';
 let artistID = '7bSpQNOg9UsW530DuXM3X5';
 
-
 const Artists = async (request, event) => {
 
-   
+
     try {
 
         const response = await fetch(baseUrl, {
@@ -44,11 +43,13 @@ const Artists = async (request, event) => {
 
                     return new Response(JSON.stringify(data), {
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+                            'Access-Control-Max-Age': '86400',
                         }
                     });
                 }
-
             }
             catch (error) {
                 console.log("Error in getSpotifyAPI() data transfer : " + error);

@@ -63,7 +63,7 @@ const CodeLedSTATUS = async (request, event) => {
 
                         const arduinoData = await arduinoResponse.json();
 
-                        return {arduinoData, arduinoResponse };
+                        return { arduinoData, arduinoResponse };
                     }
                 }
                 catch (error) {
@@ -75,14 +75,22 @@ const CodeLedSTATUS = async (request, event) => {
             }
         }
 
-        const {arduinoData, arduinoResponse}  = await useToken();
+        const { arduinoData, arduinoResponse } = await useToken();
 
         return new Response(JSON.stringify({
             value: `${arduinoData[0].properties[1].last_value}`,
             name: `${arduinoData[0].properties[1].name}`,
             status: `${arduinoResponse.status}`,
+        }
+        ), {
+            headers:
+            {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+                'Access-Control-Max-Age': '86400',
             }
-        ), {headers: {'Content-Type': 'application/json'}});
+        });
     }
     catch (error) {
         console.error("Failed CodeLedToggleSTATUS function call : " + error);
