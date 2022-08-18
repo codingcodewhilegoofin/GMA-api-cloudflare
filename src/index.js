@@ -1,15 +1,4 @@
 import { Router } from 'itty-router';
-
-import {
-  json,
-  missing,
-  error,
-  status,
-  withContent,
-  withParams,
-  ThrowableRouter,
-} from 'itty-router-extras';
-
 import Tests from './handlers/tests.js';
 import Test from './handlers/test.js';
 import ApiTest from './handlers/OpenAi/apitest.js';
@@ -20,11 +9,30 @@ import CryptoTicker from './handlers/Financial/cryptoTicker.js';
 import NftTicker from './handlers/Financial/nft.js';
 import GovData from './handlers/Financial/gov.js';
 import CodeLedToggleON from './handlers/Arduino/codeLedToggleON.js';
-
+import CodeLedToggleOFF from './handlers/Arduino/codeLedToggleOFF.js';
+import CodeLedSTATUS from './handlers/Arduino/codeLedSTATUS.js';
+import Index from './html/index.html';
+import About from './html/about.html';
+import Endpoints from './html/endpoints.html';
+import Contact from './html/contact.html';
 
 const router = Router();
 
-router.get('/', () => new Response("Hello",{status: 200})); 
+router.get('/', () => new Response(Index , {
+  headers: { 'content-type': 'text/html' },
+})); 
+
+router.get('/About', () => new Response(About , {
+  headers: { 'content-type': 'text/html' },
+})); 
+
+router.get('/Endpoints', () => new Response(Endpoints , {
+  headers: { 'content-type': 'text/html' },
+})); 
+
+router.get('/Contact', () => new Response(Contact , {
+  headers: { 'content-type': 'text/html' },
+})); 
 
 // Test routes
 router.get('/api/tests', Tests)
@@ -45,10 +53,10 @@ router.get('/api/Gov', GovData );
 
 // Connect to Arduino API
 router.get('/api/Arduino/ToggleON', CodeLedToggleON );
+router.get('/api/Arduino/ToggleOFF', CodeLedToggleOFF );
+router.get('/api/Arduino/STATUS', CodeLedSTATUS );
 
-
-
-router.get('*', () => new Response('Not found bitchh', { status: 404 }));
+router.get('*', () => new Response('🌴☀️ ~ Cannot find an endpoint for this 😕 ~ 🌴☀️', { status: 404 }));
 
 //Test listener
 addEventListener('fetch', event =>
