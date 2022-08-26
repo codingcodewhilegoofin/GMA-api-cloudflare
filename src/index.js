@@ -47,7 +47,7 @@ router.get('/api/Spotify/:artistID', Artist );
 
 // Connect to Financial APIs 
 router.get('/api/Stock/:symbol/:date/:adjusted', StockTicker );
-router.get('/api/Crypto/:cryptoticker/:adjusted', CryptoTicker );
+router.get('/api/Crypto/:cryptoTicker/:adjusted', CryptoTicker );
 router.get('/api/Nft/:collectionName', NftTicker );
 router.get('/api/Gov', GovData );
 
