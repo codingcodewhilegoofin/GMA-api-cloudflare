@@ -18,9 +18,7 @@ const ApiTest = async (request, event) => {
             userPrompt = request.params.userPrompt;
         }  */
 
-        console.log(request.params.userPrompt);
-        console.log(userPrompt);
-        console.log(openai);
+
 
 
         const completion = await openai.createCompletion({
@@ -37,7 +35,10 @@ const ApiTest = async (request, event) => {
         //console.log(completion.data.choices[0].text);
         return new Response(JSON.stringify(completion.data.choices[0].text), {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+                'Access-Control-Max-Age': '86400',
             }
         });
 

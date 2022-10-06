@@ -1,6 +1,6 @@
 const testUrl = 'https://swapi.dev/api/people/';
 
-const Test = async(request, event) => {
+const Test = async (request, event) => {
 
     const swapid = request.params.id;
 
@@ -19,7 +19,10 @@ const Test = async(request, event) => {
             //res.status(200).send(data);
             return new Response(JSON.stringify(data), {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+                    'Access-Control-Max-Age': '86400',
                 }
             });
         }

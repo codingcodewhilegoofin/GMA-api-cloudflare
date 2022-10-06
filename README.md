@@ -1,7 +1,7 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 # GMAppsApi 
-( Gio Moscato Apps Api)
+( Gio M Apps Api)
 
 ## Welcome to my backend! 
 This is a backend for my applications written in Node/ExpressJS for Google Cloud Functions!

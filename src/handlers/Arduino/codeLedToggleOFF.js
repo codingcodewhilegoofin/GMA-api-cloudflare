@@ -96,7 +96,7 @@ const CodeLedToggleOFF = async (request, event) => {
                 catch (error) {
                     console.error("\n Failed GET things request: ", error);
                 }
-                
+
             } catch (error) {
                 console.log("useToken() error occurred: ", error);
             }
@@ -106,7 +106,10 @@ const CodeLedToggleOFF = async (request, event) => {
 
         return new Response(JSON.stringify("LED_OFF " + arduinoResponse.status), {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+                'Access-Control-Max-Age': '86400',
             }
         });
     }

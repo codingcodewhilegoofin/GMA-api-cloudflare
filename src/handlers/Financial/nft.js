@@ -29,7 +29,10 @@ const NftTicker = async (request, event) => {
 
             return new Response(JSON.stringify(data), {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+                    'Access-Control-Max-Age': '86400',
                 }
             });
         }
