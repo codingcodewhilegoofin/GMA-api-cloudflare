@@ -11,6 +11,7 @@ import GovData from './handlers/Financial/gov.js';
 import CodeLedToggleON from './handlers/Arduino/codeLedToggleON.js';
 import CodeLedToggleOFF from './handlers/Arduino/codeLedToggleOFF.js';
 import CodeLedSTATUS from './handlers/Arduino/codeLedSTATUS.js';
+import MongoBackend from './handlers/Mongo/MongoBackend.js';
 import Index from './html/index.html';
 import About from './html/about.html';
 import Endpoints from './html/endpoints.html';
@@ -55,6 +56,8 @@ router.get('/api/Gov', GovData );
 router.get('/api/Arduino/ToggleON', CodeLedToggleON );
 router.get('/api/Arduino/ToggleOFF', CodeLedToggleOFF );
 router.get('/api/Arduino/STATUS', CodeLedSTATUS );
+
+router.get('/api/Mongo', MongoBackend );
 
 router.get('*', () => new Response('🌴☀️ ~ Cannot find an endpoint for this 😕 ~ 🌴☀️', { status: 404 }));
 
