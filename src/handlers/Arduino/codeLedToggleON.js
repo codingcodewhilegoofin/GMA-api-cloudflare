@@ -77,7 +77,7 @@ const CodeLedToggleON = async (request, event) => {
                                 })
                             };
 
-                            const urlTemp = `${propertiesPublishUrl}/${data[0].id}/properties/${data[0].properties[1].id}/publish`;
+                            const urlTemp = `${propertiesPublishUrl}/${data[0].id}/properties/${data[0].properties[2].id}/publish`;
                             const response = await fetch(urlTemp, options3);
 
                             if (!response.ok) {

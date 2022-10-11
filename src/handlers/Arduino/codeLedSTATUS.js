@@ -63,6 +63,8 @@ const CodeLedSTATUS = async (request, event) => {
 
                         const arduinoData = await arduinoResponse.json();
 
+                        console.log(" Response: \n", arduinoResponse);
+
                         return { arduinoData, arduinoResponse };
                     }
                 }
@@ -77,9 +79,11 @@ const CodeLedSTATUS = async (request, event) => {
 
         const { arduinoData, arduinoResponse } = await useToken();
 
+        console.log(" Data: \n", arduinoData[0].properties[2]);
+
         return new Response(JSON.stringify({
-            value: `${arduinoData[0].properties[1].last_value}`,
-            name: `${arduinoData[0].properties[1].name}`,
+            value: `${arduinoData[0].properties[2].last_value}`,
+            name: `${arduinoData[0].properties[2].name}`,
             status: `${arduinoResponse.status}`,
         }
         ), {
