@@ -3,10 +3,9 @@ const ArduinoUrl = 'https://api2.arduino.cc/iot/v1/clients/token';
 const thingsURL = "https://api2.arduino.cc/iot/v2/things?show_properties=true";
 const propertiesPublishUrl = "https://api2.arduino.cc/iot/v2/things";
 
-const CodeLedToggleOFF = async (request, event) => {
+const webSiteLedToggleON = async (request, event) => {
 
     try {
-
         // Turn on LED on website and board 
         async function getToken() {
             let options = {
@@ -73,11 +72,11 @@ const CodeLedToggleOFF = async (request, event) => {
                                 },
                                 body: JSON.stringify({
 
-                                    'value': false,
+                                    'value': true,
                                 })
                             };
-
-                            const urlTemp = `${propertiesPublishUrl}/${data[0].id}/properties/${data[0].properties[2].id}/publish`;
+                            
+                            const urlTemp = `${propertiesPublishUrl}/${data[0].id}/properties/${data[0].properties[3].id}/publish`;
                             const response = await fetch(urlTemp, options3);
 
                             if (!response.ok) {
@@ -104,7 +103,9 @@ const CodeLedToggleOFF = async (request, event) => {
 
         const arduinoResponse = await useToken();
 
-        return new Response(JSON.stringify("LED_OFF " + arduinoResponse.status), {
+        console.log("arduinoResponse:" , arduinoResponse);
+
+        return new Response(JSON.stringify("Connection to API is live, LED is on." + arduinoResponse.status), {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
@@ -114,8 +115,8 @@ const CodeLedToggleOFF = async (request, event) => {
         });
     }
     catch (error) {
-        console.error("Failed CodeLedToggleOFF function call : " + error);
+        console.error("Failed webSiteLedToggleOn function call : " , error);
         //res.status(401).send("Could not find ticker symbol or other issue");
     }
 };
-export default CodeLedToggleOFF;
+export default webSiteLedToggleON
