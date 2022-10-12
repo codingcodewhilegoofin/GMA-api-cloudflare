@@ -9,6 +9,7 @@ import CryptoTicker from './handlers/Financial/cryptoTicker.js';
 import NftTicker from './handlers/Financial/nft.js';
 import GovData from './handlers/Financial/gov.js';
 import CodeLedToggleON from './handlers/Arduino/codeLedToggleON.js';
+import WebSiteLedToggleON from './handlers/Arduino/webSiteLedToggleON';
 import CodeLedToggleOFF from './handlers/Arduino/codeLedToggleOFF.js';
 import CodeLedSTATUS from './handlers/Arduino/codeLedSTATUS.js';
 import MongoBackend from './handlers/Mongo/MongoBackend.js';
@@ -56,6 +57,7 @@ router.get('/api/Gov', GovData );
 router.get('/api/Arduino/ToggleON', CodeLedToggleON );
 router.get('/api/Arduino/ToggleOFF', CodeLedToggleOFF );
 router.get('/api/Arduino/STATUS', CodeLedSTATUS );
+router.get('/api/Arduino/TestConnection', WebSiteLedToggleON );
 
 router.get('/api/Mongo', MongoBackend );
 
