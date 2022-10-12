@@ -9,7 +9,7 @@ import CryptoTicker from './handlers/Financial/cryptoTicker.js';
 import NftTicker from './handlers/Financial/nft.js';
 import GovData from './handlers/Financial/gov.js';
 import CodeLedToggleON from './handlers/Arduino/codeLedToggleON.js';
-import WebSiteLedToggleON from './handlers/Arduino/webSiteLedToggleON';
+import WebSiteLedToggleON from './handlers/Arduino/webSiteLedToggleON.js';
 import CodeLedToggleOFF from './handlers/Arduino/codeLedToggleOFF.js';
 import CodeLedSTATUS from './handlers/Arduino/codeLedSTATUS.js';
 import MongoBackend from './handlers/Mongo/MongoBackend.js';
