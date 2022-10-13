@@ -20,8 +20,22 @@ import Contact from './html/contact.html';
 
 const router = Router();
 
+router.get('/api', () => new Response(Index , {
+  headers: { 'content-type': 'text/html' },
+})); 
 
+/* router.get('/About', () => new Response(About , {
+  headers: { 'content-type': 'text/html' },
+})); 
 
+router.get('/Endpoints', () => new Response(Endpoints , {
+  headers: { 'content-type': 'text/html' },
+})); 
+
+router.get('/Contact', () => new Response(Contact , {
+  headers: { 'content-type': 'text/html' },
+})); 
+ */
 // Test routes
 router.get('/api/tests', Tests)
 router.get('/api/test/:id', Test );
