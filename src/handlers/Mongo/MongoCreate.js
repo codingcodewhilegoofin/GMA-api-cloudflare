@@ -45,7 +45,7 @@ const MongoCreate = async (request, event) => {
                     "document": {
                         "name": `${name}`,
                         "social": [
-                            `${social[0]}`,
+                            `${social}`,
                         ],
                         "plug": `${plug}`,
                         "date": `${date}`,

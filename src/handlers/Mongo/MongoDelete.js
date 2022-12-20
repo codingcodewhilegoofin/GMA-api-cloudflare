@@ -1,7 +1,15 @@
 //Mongo URL
 const MongoUrl = 'https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/deleteOne';
 
+let id = '';
+
 const MongoDelete = async (request, event) => {
+
+    if (request.params.id) {
+        id = request.params.id;
+    } else {
+        id = '';
+    }
 
     try {
 
@@ -12,7 +20,7 @@ const MongoDelete = async (request, event) => {
                     "collection": "gmwebsite",
                     "database": "gmadb",
                     "dataSource": "giobot",
-                    "filter": { "_id": { "$oid": "6392c40b10494bc10e02316e" } },
+                    "filter": { "_id": { "$oid": `${id}` } },
                 };
 
                 let options = {

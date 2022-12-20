@@ -65,8 +65,8 @@ router.get('/api/Arduino/TestConnection', WebSiteLedToggleON );
 // Connect to MongoDB
 router.get('/api/Mongo', MongoBackend );
 router.get('/api/MongoCreate/:name/:social/:plug/:date', MongoCreate );
-router.get('/api/MongoUpdate', MongoUpdate );
-router.get('/api/MongoDelete', MongoDelete );
+router.get('/api/MongoUpdate/:id/:name/:social/:plug/:date', MongoUpdate );
+router.get('/api/MongoDelete/:id', MongoDelete );
 
 router.get('*', () => new Response('🌴☀️ ~ Cannot find an endpoint for this 😕 ~ 🌴☀️', { status: 404 }));
 
