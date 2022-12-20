@@ -1,5 +1,5 @@
 //Mongo URL
-const MongoUrl = 'https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/insertOne';\
+const MongoUrl = 'https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/insertOne';
 let name = 'none';
 let social = ['1', '2'];
 let plug = '';
