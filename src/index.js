@@ -64,7 +64,7 @@ router.get('/api/Arduino/TestConnection', WebSiteLedToggleON );
 
 // Connect to MongoDB
 router.get('/api/Mongo', MongoBackend );
-router.get('/api/MongoCreate', MongoCreate );
+router.get('/api/MongoCreate/:name/:social/:plug/:date', MongoCreate );
 router.get('/api/MongoUpdate', MongoUpdate );
 router.get('/api/MongoDelete', MongoDelete );
 

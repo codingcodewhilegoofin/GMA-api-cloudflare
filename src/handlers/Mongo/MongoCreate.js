@@ -1,7 +1,37 @@
 //Mongo URL
-const MongoUrl = 'https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/insertOne';
+const MongoUrl = 'https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/insertOne';\
+let name = 'none';
+let social = ['1', '2'];
+let plug = '';
+let date = '2022-12-08T01:11:18.965Z';
+
 
 const MongoCreate = async (request, event) => {
+
+    if (request.params.name) {
+        name = request.params.name;
+    } else {
+        name = 'none';
+    }
+
+    if (request.params.social) {
+        social = request.params.social;
+    } else {
+        social = ['1', '2'];
+    }
+
+    if (request.params.plug) {
+        plug = request.params.plug;
+    } else {
+        plug = '';
+    }
+
+    if (request.params.date) {
+        date = request.params.date;
+    } else {
+        date = '2022-12-08T01:11:18.965Z';
+    }
+  
 
     try {
 
@@ -13,14 +43,12 @@ const MongoCreate = async (request, event) => {
                     "database": "gmadb",
                     "dataSource": "giobot",
                     "document": {
-                        "name": "Jacque",
+                        "name": `${name}`,
                         "social": [
-                            "Jacque.com",
-                            "Stuff.com",
+                            `${social[0]}`,
                         ],
-                        "plug": "jacqueinstagram",
-                        "date": "2022-12-08T01:11:18.965Z",
-
+                        "plug": `${plug}`,
+                        "date": `${date}`,
                     }
                 };
 
@@ -72,10 +100,10 @@ const MongoCreate = async (request, event) => {
         }
 
         const MongoData = await createDocument();
-        
-        console.log("MongoCreate sucessfull" , MongoData);
 
-        return new Response(JSON.stringify(MongoData ), {
+        console.log("MongoCreate sucessfull", MongoData);
+
+        return new Response(JSON.stringify(MongoData), {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
