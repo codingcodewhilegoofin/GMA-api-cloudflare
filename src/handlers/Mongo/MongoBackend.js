@@ -50,7 +50,7 @@ const MongoBackend = async (request, event) => {
         
         console.log("MongoData is" , MongoData?.documents[0])
 
-        return new Response(JSON.stringify(MongoData?.documents[0] ?? "Not found"), {
+        return new Response(JSON.stringify(MongoData?.documents ?? "Not found"), {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',

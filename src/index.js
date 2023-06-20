@@ -13,6 +13,9 @@ import WebSiteLedToggleON from './handlers/Arduino/webSiteLedToggleON.js';
 import CodeLedToggleOFF from './handlers/Arduino/codeLedToggleOFF.js';
 import CodeLedSTATUS from './handlers/Arduino/codeLedSTATUS.js';
 import MongoBackend from './handlers/Mongo/MongoBackend.js';
+import MongoCreate from './handlers/Mongo/MongoCreate.js';
+import MongoUpdate from './handlers/Mongo/MongoUpdate.js';
+import MongoDelete from './handlers/Mongo/MongoDelete.js';
 import Index from './html/index.html';
 import About from './html/about.html';
 import Endpoints from './html/endpoints.html';
@@ -20,11 +23,11 @@ import Contact from './html/contact.html';
 
 const router = Router();
 
-router.get('/', () => new Response(Index , {
+router.get('/api', () => new Response(Index , {
   headers: { 'content-type': 'text/html' },
 })); 
 
-router.get('/About', () => new Response(About , {
+/* router.get('/About', () => new Response(About , {
   headers: { 'content-type': 'text/html' },
 })); 
 
@@ -35,7 +38,7 @@ router.get('/Endpoints', () => new Response(Endpoints , {
 router.get('/Contact', () => new Response(Contact , {
   headers: { 'content-type': 'text/html' },
 })); 
-
+ */
 // Test routes
 router.get('/api/tests', Tests)
 router.get('/api/test/:id', Test );
@@ -59,7 +62,11 @@ router.get('/api/Arduino/ToggleOFF', CodeLedToggleOFF );
 router.get('/api/Arduino/STATUS', CodeLedSTATUS );
 router.get('/api/Arduino/TestConnection', WebSiteLedToggleON );
 
+// Connect to MongoDB
 router.get('/api/Mongo', MongoBackend );
+router.get('/api/MongoCreate/:name/:social/:plug/:date', MongoCreate );
+router.get('/api/MongoUpdate/:id/:name/:social/:plug/:date', MongoUpdate );
+router.get('/api/MongoDelete/:id', MongoDelete );
 
 router.get('*', () => new Response('🌴☀️ ~ Cannot find an endpoint for this 😕 ~ 🌴☀️', { status: 404 }));
 
