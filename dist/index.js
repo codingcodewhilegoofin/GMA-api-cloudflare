@@ -721,7 +721,7 @@
       }
       const MongoData = await getAll();
       console.log("MongoData is", MongoData?.documents[0]);
-      return new Response(JSON.stringify(MongoData?.documents[0] ?? "Not found"), {
+      return new Response(JSON.stringify(MongoData?.documents ?? "Not found"), {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -735,30 +735,314 @@
   };
   var MongoBackend_default = MongoBackend;
 
-  // wrangler-module-Text:./b7769a091a9437996ba60891c043cb048bea7124-index.html
-  var b7769a091a9437996ba60891c043cb048bea7124_index_default = __b7769a091a9437996ba60891c043cb048bea7124_index_html;
+  // src/handlers/Mongo/MongoCreate.js
+  var MongoUrl2 = "https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/insertOne";
+  var name = "none";
+  var social = ["1", "2"];
+  var plug = "";
+  var date2 = "2022-12-08T01:11:18.965Z";
+  var MongoCreate = async (request, event) => {
+    if (request.params.name) {
+      name = request.params.name;
+    } else {
+      name = "none";
+    }
+    if (request.params.social) {
+      social = request.params.social;
+    } else {
+      social = ["1", "2"];
+    }
+    if (request.params.plug) {
+      plug = request.params.plug;
+    } else {
+      plug = "";
+    }
+    if (request.params.date) {
+      date2 = request.params.date;
+    } else {
+      date2 = "2022-12-08T01:11:18.965Z";
+    }
+    try {
+      async function createDocument() {
+        try {
+          const data = {
+            "collection": "gmwebsite",
+            "database": "gmadb",
+            "dataSource": "giobot",
+            "document": {
+              "name": `${name}`,
+              "social": [
+                `${social}`
+              ],
+              "plug": `${plug}`,
+              "date": `${date2}`
+            }
+          };
+          let options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Request-Headers": "*",
+              "api-key": MDB_TOKEN
+            },
+            body: JSON.stringify(data)
+          };
+          console.log("Function is running calling... ");
+          console.log(options, options.headers, options.body);
+          const MongoResponse = await fetch(MongoUrl2, options);
+          if (!MongoResponse.ok) {
+            const message = `
+ Bad fetch: ${MongoResponse.status}`;
+            console.log(message, " Response is: ", MongoResponse.body, MongoResponse.headers, MongoResponse.statusText);
+            return new Response(`Error : ${message}`, {
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+                "Access-Control-Max-Age": "86400"
+              }
+            });
+          } else {
+            const MongoData2 = await MongoResponse.json();
+            console.log(MongoData2);
+            return MongoData2;
+          }
+        } catch (error) {
+          console.log("useToken() internal error occurred: ", error.message);
+          return new Response(`Error : ${error.message}`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+              "Access-Control-Max-Age": "86400"
+            }
+          });
+        }
+      }
+      const MongoData = await createDocument();
+      console.log("MongoCreate sucessfull", MongoData);
+      return new Response(JSON.stringify(MongoData), {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+          "Access-Control-Max-Age": "86400"
+        }
+      });
+    } catch (error) {
+      console.error("Failed MongoCreate call : ", error.message);
+      return new Response(`Error : ${error.message}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+          "Access-Control-Max-Age": "86400"
+        }
+      });
+    }
+  };
+  var MongoCreate_default = MongoCreate;
 
-  // wrangler-module-Text:./9c6a6eb7d98df72805bcf6249c122690d663d8c7-about.html
-  var c6a6eb7d98df72805bcf6249c122690d663d8c7_about_default = __9c6a6eb7d98df72805bcf6249c122690d663d8c7_about_html;
+  // src/handlers/Mongo/MongoUpdate.js
+  var MongoUrl3 = "https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/updateOne";
+  var id = "";
+  var name2 = "none";
+  var social2 = ["1", "2"];
+  var plug2 = "";
+  var date3 = "2022-12-08T01:11:18.965Z";
+  var MongoUpdate = async (request, event) => {
+    if (request.params.id) {
+      id = request.params.id;
+    } else {
+      id = "";
+    }
+    if (request.params.name) {
+      name2 = request.params.name;
+    } else {
+      name2 = "none";
+    }
+    if (request.params.social) {
+      social2 = request.params.social;
+    } else {
+      social2 = ["1", "2"];
+    }
+    if (request.params.plug) {
+      plug2 = request.params.plug;
+    } else {
+      plug2 = "";
+    }
+    if (request.params.date) {
+      date3 = request.params.date;
+    } else {
+      date3 = "2022-12-08T01:11:18.965Z";
+    }
+    try {
+      async function updateDocument() {
+        try {
+          const data = {
+            "collection": "gmwebsite",
+            "database": "gmadb",
+            "dataSource": "giobot",
+            "filter": { "_id": { "$oid": `${id}` } },
+            "update": {
+              "$set": {
+                "name": `${name2}`,
+                "social": [
+                  `${social2}`
+                ],
+                "plug": `${plug2}`,
+                "date": `${date3}`
+              }
+            }
+          };
+          let options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Request-Headers": "*",
+              "api-key": MDB_TOKEN
+            },
+            body: JSON.stringify(data)
+          };
+          const MongoResponse = await fetch(MongoUrl3, options);
+          if (!MongoResponse.ok) {
+            const message = `
+ Bad fetch: ${MongoResponse.status}`;
+            console.log(message, " Response is: ", MongoResponse.body, MongoResponse.headers, MongoResponse.statusText);
+            return new Response(`Error : ${message}`, {
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+                "Access-Control-Max-Age": "86400"
+              }
+            });
+          } else {
+            const MongoData2 = await MongoResponse.json();
+            return MongoData2;
+          }
+        } catch (error) {
+          console.log("useToken() internal error occurred: ", error.message);
+          return new Response(`Error : ${error.message}`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+              "Access-Control-Max-Age": "86400"
+            }
+          });
+        }
+      }
+      const MongoData = await updateDocument();
+      console.log("MongoUpdate sucessfull", MongoData);
+      return new Response(JSON.stringify(MongoData), {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+          "Access-Control-Max-Age": "86400"
+        }
+      });
+    } catch (error) {
+      console.error("Failed MongoUpdate call : ", error.message);
+      return new Response(`Error : ${error.message}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+          "Access-Control-Max-Age": "86400"
+        }
+      });
+    }
+  };
+  var MongoUpdate_default = MongoUpdate;
 
-  // wrangler-module-Text:./0590d5fc710c4fdc3749ad423ac77f63639dd869-endpoints.html
-  var d5fc710c4fdc3749ad423ac77f63639dd869_endpoints_default = __0590d5fc710c4fdc3749ad423ac77f63639dd869_endpoints_html;
+  // src/handlers/Mongo/MongoDelete.js
+  var MongoUrl4 = "https://data.mongodb-api.com/app/data-inikb/endpoint/data/v1/action/deleteOne";
+  var id2 = "";
+  var MongoDelete = async (request, event) => {
+    if (request.params.id) {
+      id2 = request.params.id;
+    } else {
+      id2 = "";
+    }
+    try {
+      async function deleteDocument() {
+        try {
+          const data = {
+            "collection": "gmwebsite",
+            "database": "gmadb",
+            "dataSource": "giobot",
+            "filter": { "_id": { "$oid": `${id2}` } }
+          };
+          let options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Request-Headers": "*",
+              "api-key": MDB_TOKEN
+            },
+            body: JSON.stringify(data)
+          };
+          const MongoResponse = await fetch(MongoUrl4, options);
+          if (!MongoResponse.ok) {
+            const message = `
+ Bad fetch: ${MongoResponse.status}`;
+            console.log(message, " Response is: ", MongoResponse.body, MongoResponse.headers, MongoResponse.statusText);
+            return new Response(`Error : ${message}`, {
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+                "Access-Control-Max-Age": "86400"
+              }
+            });
+          } else {
+            const MongoData2 = await MongoResponse.json();
+            return MongoData2;
+          }
+        } catch (error) {
+          console.log("useToken() internal error occurred: ", error.message);
+          return new Response(`Error : ${error.message}`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+              "Access-Control-Max-Age": "86400"
+            }
+          });
+        }
+      }
+      const MongoData = await deleteDocument();
+      console.log("MongoDelete sucessfull", MongoData);
+      return new Response(JSON.stringify(MongoData), {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+          "Access-Control-Max-Age": "86400"
+        }
+      });
+    } catch (error) {
+      console.error("Failed MongoDelete call : ", error.message);
+      return new Response(`Error : ${error.message}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+          "Access-Control-Max-Age": "86400"
+        }
+      });
+    }
+  };
+  var MongoDelete_default = MongoDelete;
 
-  // wrangler-module-Text:./9c15ca918d9bf94cea2b2c9f65a2331c02719aca-contact.html
-  var c15ca918d9bf94cea2b2c9f65a2331c02719aca_contact_default = __9c15ca918d9bf94cea2b2c9f65a2331c02719aca_contact_html;
+  // wrangler-module-Text:./6b79c8eaecc7f2d0c9a270746421c1027c9750f9-index.html
+  var b79c8eaecc7f2d0c9a270746421c1027c9750f9_index_default = __6b79c8eaecc7f2d0c9a270746421c1027c9750f9_index_html;
 
   // src/index.js
   var router = e();
-  router.get("/", () => new Response(b7769a091a9437996ba60891c043cb048bea7124_index_default, {
-    headers: { "content-type": "text/html" }
-  }));
-  router.get("/About", () => new Response(c6a6eb7d98df72805bcf6249c122690d663d8c7_about_default, {
-    headers: { "content-type": "text/html" }
-  }));
-  router.get("/Endpoints", () => new Response(d5fc710c4fdc3749ad423ac77f63639dd869_endpoints_default, {
-    headers: { "content-type": "text/html" }
-  }));
-  router.get("/Contact", () => new Response(c15ca918d9bf94cea2b2c9f65a2331c02719aca_contact_default, {
+  router.get("/api", () => new Response(b79c8eaecc7f2d0c9a270746421c1027c9750f9_index_default, {
     headers: { "content-type": "text/html" }
   }));
   router.get("/api/tests", tests_default);
@@ -775,7 +1059,10 @@
   router.get("/api/Arduino/STATUS", codeLedSTATUS_default);
   router.get("/api/Arduino/TestConnection", webSiteLedToggleON_default);
   router.get("/api/Mongo", MongoBackend_default);
-  router.get("*", () => new Response("\u{1F334}\u2600\uFE0F ~ Cannot find an endpoint for this \u{1F615} ~ \u{1F334}\u2600\uFE0F", { status: 404 }));
+  router.get("/api/MongoCreate/:name/:social/:plug/:date", MongoCreate_default);
+  router.get("/api/MongoUpdate/:id/:name/:social/:plug/:date", MongoUpdate_default);
+  router.get("/api/MongoDelete/:id", MongoDelete_default);
+  router.get("*", () => new Response("Whatever you did is not valid! ~ Did not find an endpoint for this please try again\u{1F615} ~ \u{1F334}\u2600\uFE0F", { status: 404 }));
   addEventListener(
     "fetch",
     (event) => event.respondWith(router.handle(event.request))

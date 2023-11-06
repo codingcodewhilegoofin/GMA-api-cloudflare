@@ -35,9 +35,10 @@ This repo hosts the code that is used by my personal portfolio and API sites.
 5. Gain a deeper understanding of full stack development
 
 
-## Build
-	npm install
-	npm start
+## Build and deploy
+    wrangler dev
+	wrangler build 
+	wrangler publish 
 
 # endpoints
 -	Spotify:
