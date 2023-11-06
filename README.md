@@ -1,15 +1,14 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-# GMAppsApi 
-( Gio M Apps Api)
+# gmdevapi
 
-## Welcome to my backend! 
-This is a backend for my applications written in Node/ExpressJS for Google Cloud Functions!
+## Backend for gmdevapi & gmdevstore
+This repo hosts the code that is used by my personal portfolio and API sites.
 
 ### This repository contains:
 
-1. Google Cloud Functions 
-2. Express JS
+1. Cloudflare workers
+2. JS
 3. Fetching API's with Async/Await functionality
 
 ---
@@ -29,8 +28,8 @@ This is a backend for my applications written in Node/ExpressJS for Google Cloud
 
 ## Goals:
 
-1. Understand Cloud Functions and the GCP
-2. Understand Node / Express JS
+1. Understand Cloud Functions and workers
+2. Understand JS
 3. Keep my Secrets secure for external API usage
 4. Create a backend for all my personal applications
 5. Gain a deeper understanding of full stack development
@@ -39,11 +38,6 @@ This is a backend for my applications written in Node/ExpressJS for Google Cloud
 ## Build
 	npm install
 	npm start
-
-Special command for gcloud:
-
-	gcloud functions deploy (projectname) --entry-point giotest --runtime nodejs16 --trigger-http --project (cloudname) --memory 128MB --timeout 60s --max-instances 5000
-
 
 # endpoints
 -	Spotify:
@@ -84,10 +78,7 @@ Special command for gcloud:
 	> /v1/GOV/debt
 
 	# RelatedProjects
-	> https://giomoscato.com/#/
-
-	> https://fullstackingdevelopment.com/
-
+	> https://gmdevstore.com/#/
 
 	# webresources
 >http://expressjs.com/
@@ -105,8 +96,6 @@ Special command for gcloud:
 >https://console.cloud.google.com/functions
 
 # credits
-From > https://sketchfab.com
-> Provence House 3D scan ZenFone AR by mano1creative, under CC. 
 
 # extra
 # packages
@@ -114,15 +103,12 @@ From > https://sketchfab.com
 ---
 
 # Maintainers
-**Giovanni Moscato**
-[Yupimaperson101@protonmail.com](Yupimaperson101@protonmail.com)
 
 ### Contributing
 **NA**
 
 
 ## Contributors
-**Giovanni J Moscato**
 
 ---
 
@@ -136,9 +122,3 @@ If your README is compliant with Standard-Readme and you're on GitHub, it would 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 ## RecentUpdates
-
-Created 4 new endpoints
-**Date: 8/2/2022**
-
-Created ENV secrets
-**Date: 7/26/2022**

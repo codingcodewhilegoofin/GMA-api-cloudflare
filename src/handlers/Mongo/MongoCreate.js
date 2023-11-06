@@ -5,7 +5,6 @@ let social = ['1', '2'];
 let plug = '';
 let date = '2022-12-08T01:11:18.965Z';
 
-
 const MongoCreate = async (request, event) => {
 
     if (request.params.name) {
@@ -32,7 +31,6 @@ const MongoCreate = async (request, event) => {
         date = '2022-12-08T01:11:18.965Z';
     }
   
-
     try {
 
         async function createDocument() {

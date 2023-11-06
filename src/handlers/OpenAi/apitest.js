@@ -1,26 +1,8 @@
-/* import { Configuration, OpenAIApi } from "openai";
-
-const configuration = new Configuration({
-    apiKey: OPENAI_API_KEY,
-}); */
-//const openai = new OpenAIApi(configuration);
-
-//Open AI 
 let userPrompt = 'Chicken Nuggets';
 
 const ApiTest = async (request, event) => {
 
-    //const userPrompt = request.params.userPrompt;
-
     try {
-
-        /* if (request.params.userPrompt) {
-            userPrompt = request.params.userPrompt;
-        }  */
-
-
-
-
         const completion = await openai.createCompletion({
             model: "text-davinci-002",
             prompt: userPrompt,
@@ -41,7 +23,6 @@ const ApiTest = async (request, event) => {
                 'Access-Control-Max-Age': '86400',
             }
         });
-
     }
     catch (error) {
         console.error("Failed GET for openai data: " + error);

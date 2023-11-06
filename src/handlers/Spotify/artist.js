@@ -3,7 +3,6 @@ const baseUrl = 'https://accounts.spotify.com/api/token';
 const artistUrlBase = 'https://api.spotify.com/v1/artists/';
 let artistID = '7bSpQNOg9UsW530DuXM3X5';
 
-
 const Artist = async (request, event) => {
 
     //const artistID = request.params.artistID;
