@@ -33,7 +33,6 @@ const MongoDelete = async (request, event) => {
                     body: JSON.stringify(data),
                 };
 
-              
                 const MongoResponse = await fetch(MongoUrl, options);
 
                 if (!MongoResponse.ok) {

@@ -29,7 +29,6 @@ const Tests = async () => {
         console.error("Failed GET for stock data: " + error);
         //res.status(401).send("Could not find ticker symbol or other issue");
     }
-
 };
 
 export default Tests;

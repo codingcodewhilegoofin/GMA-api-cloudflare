@@ -3,7 +3,7 @@
   "type": "module",
   "name": "gmapps-api-v1",
   "version": "1.0.0",
-  "description": "A template for kick starting a Cloudflare Workers project",
+  "description": "API to serve content securely to gmdevstore.com",
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack",
@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
-  "author": "Giovanni Moscato <69764323+codingcodewhilegoofin@users.noreply.github.com>",
+  "author": "_gmdev",
   "license": "MIT",
   "devDependencies": {
     "html-loader": "^4.2.0",

@@ -17,7 +17,6 @@ const CryptoTicker = async (request, event) => {
         adjusted = 'true';
     }
 
-
     try {
         const response = await fetch( ( polygonUrlBaseCrypto + `${cryptoTicker}/` + `prev?adjusted=${adjusted}`+ `&apiKey=${POLYGON_API_KEY}` ) );
 

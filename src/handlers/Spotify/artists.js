@@ -5,7 +5,6 @@ let artistID = '7bSpQNOg9UsW530DuXM3X5';
 
 const Artists = async (request, event) => {
 
-
     try {
 
         const response = await fetch(baseUrl, {

@@ -17,9 +17,6 @@ import MongoCreate from './handlers/Mongo/MongoCreate.js';
 import MongoUpdate from './handlers/Mongo/MongoUpdate.js';
 import MongoDelete from './handlers/Mongo/MongoDelete.js';
 import Index from './html/index.html';
-import About from './html/about.html';
-import Endpoints from './html/endpoints.html';
-import Contact from './html/contact.html';
 
 const router = Router();
 
@@ -27,18 +24,6 @@ router.get('/api', () => new Response(Index , {
   headers: { 'content-type': 'text/html' },
 })); 
 
-/* router.get('/About', () => new Response(About , {
-  headers: { 'content-type': 'text/html' },
-})); 
-
-router.get('/Endpoints', () => new Response(Endpoints , {
-  headers: { 'content-type': 'text/html' },
-})); 
-
-router.get('/Contact', () => new Response(Contact , {
-  headers: { 'content-type': 'text/html' },
-})); 
- */
 // Test routes
 router.get('/api/tests', Tests)
 router.get('/api/test/:id', Test );
@@ -68,7 +53,7 @@ router.get('/api/MongoCreate/:name/:social/:plug/:date', MongoCreate );
 router.get('/api/MongoUpdate/:id/:name/:social/:plug/:date', MongoUpdate );
 router.get('/api/MongoDelete/:id', MongoDelete );
 
-router.get('*', () => new Response('🌴☀️ ~ Cannot find an endpoint for this 😕 ~ 🌴☀️', { status: 404 }));
+router.get('*', () => new Response('Whatever you did is not valid! ~ Did not find an endpoint for this please try again😕 ~ 🌴☀️', { status: 404 }));
 
 //Test listener
 addEventListener('fetch', event =>

@@ -39,7 +39,6 @@ const MongoUpdate = async (request, event) => {
         date = '2022-12-08T01:11:18.965Z';
     }
   
-
     try {
 
         async function updateDocument() {
@@ -71,7 +70,6 @@ const MongoUpdate = async (request, event) => {
                     },
                     body: JSON.stringify(data),
                 };
-
 
                 const MongoResponse = await fetch(MongoUrl, options);
 

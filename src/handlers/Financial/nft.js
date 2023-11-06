@@ -12,7 +12,6 @@ const NftTicker = async (request, event) => {
         collectionName = 'cryptopunks';
     }
    
-
     try {
         const nftOptions = {method: 'GET'};
 
